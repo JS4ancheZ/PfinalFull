@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -25,7 +25,34 @@
                     <div class="card-body">
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="list-login" role="tabpanel" aria-labelledby="list-login-list">
-                                <form acttion="config/Authenticate.php" method="POST" >
+                                <form action="config/Authenticate.php" method="POST">
+
+                                <?php 
+                                    $mensajes = array(
+                                        0=>"No se pudo realizar la acción, comunicate con el administrador",
+                                        1=>"Nombre de usuario o contraseña no válidos, Inténtelo de nuevo",
+                                        2=>"Por favor, inicie sesión para acceder a esta área",
+                                        3=>"No se puede registrar debido a que ya existe una cuenta con el mismo correo electronico",
+                                        4=>"No tienes acceso a esta area, Inicia sesion nuevamente",
+                                        5=>"Se registro correctamente"
+                                    );
+
+                                    $mensaje_id = isset($_GET['mensaje']) ? (int)$_GET['mensaje'] : 0;
+                                    $mensaje='';
+
+                                    if($mensaje_id=='5'){
+                                        $clase = 'alert-success';
+                                    }else{
+                                        $clase = 'alert-danger';
+                                    }
+
+                                    if ($mensaje_id != '') {
+                                        $mensaje = $mensajes[$mensaje_id];
+                                    }
+
+                                    if ($mensaje!='') echo "<div class='alert $clase' role='alert'> $mensaje </div>";
+                                    
+                                ?>  
                                 
                                     <div class="form-group">
                                         <label for="email">Correo electrónico</label>
@@ -42,7 +69,7 @@
                             </div>
 
                             <div class="tab-pane fade" id="list-register" role="tabpanel" aria-labelledby="list-register-list">
-                                <form acttion="config/Register.php" method="POST" name="forregistro">
+                                <form action="config/Registrar.php" method="POST" name="forregistro">
 
                                     <div id='mensaje'> </div>
                                     
@@ -86,9 +113,10 @@
             </div>
         </div>
     <div>
-    <script src="./js/javascript.js"></script>
-    <script src="./js/validaciones.js"></script>
-   <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="./js/javascript.js" ></script>
+    <script src="./js/validaciones.js" ></script>
+    <script src="./bootstrap/js/bootstrap.bundle.min.js" ></script>
 
 </body>
 </html>

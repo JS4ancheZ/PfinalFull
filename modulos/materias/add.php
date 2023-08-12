@@ -3,10 +3,10 @@
     include_once("../../config/DBConect.php");
     include_once("../../config/Config.php");    
 
-    if(isset($_POST['nombre']))      $nombre = $_POST['nombre']; 
-    if(isset($_POST['horario']))      $nombre = $_POST['horario']; 
-    if(isset($_POST['docente']))      $nombre = $_POST['docennte']; 
-    if(isset($_POST['descripcion']))      $nombre = $_POST['descripcion']; 
+    if(isset($_POST['nombre']))       $nombre = $_POST['nombre']; 
+    if(isset($_POST['horario']))      $horario = $_POST['horario']; 
+    if(isset($_POST['docente']))      $docente = $_POST['docennte']; 
+    if(isset($_POST['descripcion']))  $dedscripcion = $_POST['descripcion']; 
 
     $conexion = new Database;  
     $result = $conexion->CrearMateria($nombre,$horario,$docente,$descripcion);

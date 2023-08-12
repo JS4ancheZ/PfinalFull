@@ -276,7 +276,7 @@
 
             try {
                 $conexion = Database::getInstance(); 
-                $result = $conexion->db->prepare("INSERT INTO materias (nombre) VALUES (:nombre, :horario, :docente,:descripcion)");
+                $result = $conexion->db->prepare("INSERT INTO materias (nombre, horario, docente, descripcion) VALUES (:nombre, :horario, :docente,:descripcion)");
                 $result->execute(
                                     array(
                                         ':nombre'=>$nombre,
@@ -295,7 +295,7 @@
 
         public function editMateria($id) { 
             $conexion = Database::getInstance(); 
-            $sql="SELECT id,nombre from materias where id=:id"; 
+            $sql="SELECT * from materias where id=:id"; 
             $result = $conexion->db->prepare($sql);     
             $params = array("id" => $id); 
             $result->execute($params);
